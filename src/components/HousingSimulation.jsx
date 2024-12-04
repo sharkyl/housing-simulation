@@ -40,7 +40,16 @@ const HousingSimulation = () => {
 
   const occupancyData = calculateOccupancy();
   const yearOneChange = Math.round(initialUnits * (annualGrowthRate/100));
+  const month1Occupancy = Math.round(occupancyData[0].occupancyRate * 10) / 10;
   const endingOccupancy = occupancyData[occupancyData.length - 1].occupancyRate;
+
+  const isTargetOccupancy = (rate) => {
+    return rate >= 92.5 && rate <= 93.5;
+  };
+
+  const getOccupancyClassName = (rate) => {
+    return isTargetOccupancy(rate) ? "text-green-600 font-bold" : "";
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
@@ -107,7 +116,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} residents/month • Month 1 Occupancy: {Math.round(occupancyData[0].occupancyRate * 10) / 10}% • Year 10 Occupancy: {Math.round(endingOccupancy * 10) / 10}%
+              {monthlyInflow} residents/month • Month 1 Occupancy: <span className={getOccupancyClassName(month1Occupancy)}>{month1Occupancy}%</span> • Year 10 Occupancy: <span className={getOccupancyClassName(endingOccupancy)}>{Math.round(endingOccupancy * 10) / 10}%</span>
             </td>
           </tr>
 
@@ -134,7 +143,7 @@ const HousingSimulation = () => {
         </tbody>
       </table>
 
- <div className="h-96">
+      <div className="h-96">
         <LineChart
           width={700}
           height={350}
@@ -192,5 +201,7 @@ const HousingSimulation = () => {
     </div>
   );
 };
+
+export default HousingSimulation;
 
 export default HousingSimulation;
