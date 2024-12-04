@@ -139,7 +139,7 @@ const HousingSimulation = () => {
           width={700}
           height={350}
           data={occupancyData}
-          margin={{ top: 25, right: 30, left: 20, bottom: 25 }}
+          margin={{ top: 25, right: 30, left: 20, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
