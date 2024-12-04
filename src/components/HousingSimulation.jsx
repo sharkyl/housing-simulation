@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 const HousingSimulation = () => {
   const [initialUnits, setInitialUnits] = useState(9070);
   const [monthlyInflow, setMonthlyInflow] = useState(151);
-  const [stayLength, setStayLength] = useState(10); // Changed default to 10 years
+  const [stayLength, setStayLength] = useState(10);
   const [annualGrowthRate, setAnnualGrowthRate] = useState(0);
   const initialOccupied = Math.round(9070 * 0.93);
   const years = 10;
@@ -120,7 +120,7 @@ const HousingSimulation = () => {
                 value={stayLength}
                 onChange={(e) => setStayLength(Number(e.target.value))}
                 min={1}
-                max={20} // Changed max to 20 years
+                max={20}
                 step={0.5}
                 className="w-full"
               />
@@ -188,5 +188,4 @@ const HousingSimulation = () => {
   );
 };
 
-export default HousingSimulation;
 export default HousingSimulation;
