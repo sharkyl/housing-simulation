@@ -38,12 +38,14 @@ const HousingSimulation = () => {
     return data;
   };
 
+  const occupancyData = calculateOccupancy();
   const yearOneChange = Math.round(initialUnits * (annualGrowthRate/100));
+  const endingOccupancy = occupancyData[occupancyData.length - 1].occupancyRate;
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Projection (Simulation)</h1>
-      This model simulates the effect of churn on HSH inventory.
+      
       <table className="w-full mb-8">
         <tbody>
           {/* Row 1 */}
@@ -105,7 +107,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} residents/month • Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
+              {monthlyInflow} residents/month • Month 1 Occupancy: {Math.round(occupancyData[0].occupancyRate * 10) / 10}% • Year 10 Occupancy: {Math.round(endingOccupancy * 10) / 10}%
             </td>
           </tr>
 
@@ -131,12 +133,21 @@ const HousingSimulation = () => {
           </tr>
         </tbody>
       </table>
-<br></br>
+
       <div className="h-96">
+        <div className="mb-4">
+          <Legend 
+            payload={[
+              { value: 'Total Units', type: 'line', color: '#2563eb' },
+              { value: 'Occupied Units', type: 'line', color: '#16a34a' },
+              { value: 'Occupancy Rate', type: 'line', color: '#dc2626' }
+            ]}
+          />
+        </div>
         <LineChart
           width={700}
           height={350}
-          data={calculateOccupancy()}
+          data={occupancyData}
           margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
@@ -160,7 +171,6 @@ const HousingSimulation = () => {
               return value.toLocaleString();
             }}
           />
-          <Legend />
           <Line 
             type="monotone" 
             dataKey="units" 
