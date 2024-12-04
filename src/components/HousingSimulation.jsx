@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 const HousingSimulation = () => {
   const [initialUnits, setInitialUnits] = useState(9070);
   const [monthlyInflow, setMonthlyInflow] = useState(151);
-  const [stayLength, setStayLength] = useState(5);
+  const [stayLength, setStayLength] = useState(10); // Changed default to 10 years
   const [annualGrowthRate, setAnnualGrowthRate] = useState(0);
   const initialOccupied = Math.round(9070 * 0.93);
   const years = 10;
@@ -48,7 +48,10 @@ const HousingSimulation = () => {
         <tbody>
           {/* Row 1 */}
           <tr className="h-16">
-            <td className="w-64">
+            <td className="w-64 text-sm font-medium">
+              Total Housing Units at Start
+            </td>
+            <td className="w-64 px-4">
               <input 
                 type="range" 
                 value={initialUnits}
@@ -59,9 +62,6 @@ const HousingSimulation = () => {
                 className="w-full"
               />
             </td>
-            <td className="w-64 px-4 text-sm font-medium">
-              Total Housing Units at Start
-            </td>
             <td className="text-sm">
               {initialUnits.toLocaleString()} units
             </td>
@@ -69,7 +69,10 @@ const HousingSimulation = () => {
 
           {/* Row 2 */}
           <tr className="h-16">
-            <td>
+            <td className="text-sm font-medium">
+              Annual Housing Growth Rate
+            </td>
+            <td className="px-4">
               <input 
                 type="range"
                 value={annualGrowthRate}
@@ -80,9 +83,6 @@ const HousingSimulation = () => {
                 className="w-full"
               />
             </td>
-            <td className="px-4 text-sm font-medium">
-              Annual Housing Growth Rate
-            </td>
             <td className="text-sm">
               {annualGrowthRate}% • {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
             </td>
@@ -90,7 +90,10 @@ const HousingSimulation = () => {
 
           {/* Row 3 */}
           <tr className="h-16">
-            <td>
+            <td className="text-sm font-medium">
+              Monthly New Residents
+            </td>
+            <td className="px-4">
               <input 
                 type="range"
                 value={monthlyInflow}
@@ -101,9 +104,6 @@ const HousingSimulation = () => {
                 className="w-full"
               />
             </td>
-            <td className="px-4 text-sm font-medium">
-              Monthly New Residents
-            </td>
             <td className="text-sm">
               {monthlyInflow} residents/month • Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
             </td>
@@ -111,22 +111,22 @@ const HousingSimulation = () => {
 
           {/* Row 4 */}
           <tr className="h-16">
-            <td>
+            <td className="text-sm font-medium">
+              Average Length of Stay
+            </td>
+            <td className="px-4">
               <input 
                 type="range"
                 value={stayLength}
                 onChange={(e) => setStayLength(Number(e.target.value))}
                 min={1}
-                max={10}
+                max={20} // Changed max to 20 years
                 step={0.5}
                 className="w-full"
               />
             </td>
-            <td className="px-4 text-sm font-medium">
-              Average Length of Stay
-            </td>
             <td className="text-sm">
-              {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover
+              {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover • {Math.round((1 / stayLength) * 1000) / 10}% annual turnover
             </td>
           </tr>
         </tbody>
@@ -188,4 +188,5 @@ const HousingSimulation = () => {
   );
 };
 
+export default HousingSimulation;
 export default HousingSimulation;
