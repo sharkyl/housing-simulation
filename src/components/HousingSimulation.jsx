@@ -204,4 +204,3 @@ const HousingSimulation = () => {
 
 export default HousingSimulation;
 
-export default HousingSimulation;
