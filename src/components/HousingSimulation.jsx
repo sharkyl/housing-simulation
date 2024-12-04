@@ -44,73 +44,93 @@ const HousingSimulation = () => {
     <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Projection</h1>
       
-      <div className="grid grid-cols-[250px,auto,auto] gap-x-8 gap-y-6 mb-8">
-        {/* Row 1 */}
-        <div>
-          <input 
-            type="range" 
-            value={initialUnits}
-            onChange={(e) => setInitialUnits(Number(e.target.value))}
-            min={8000}
-            max={20000}
-            step={100}
-            className="w-full"
-          />
-        </div>
-        <div className="text-sm font-medium">Total Housing Units at Start</div>
-        <div className="text-sm">{initialUnits.toLocaleString()} units</div>
+      <table className="w-full mb-8">
+        <tbody>
+          {/* Row 1 */}
+          <tr className="h-16">
+            <td className="w-64">
+              <input 
+                type="range" 
+                value={initialUnits}
+                onChange={(e) => setInitialUnits(Number(e.target.value))}
+                min={8000}
+                max={20000}
+                step={100}
+                className="w-full"
+              />
+            </td>
+            <td className="w-64 px-4 text-sm font-medium">
+              Total Housing Units at Start
+            </td>
+            <td className="text-sm">
+              {initialUnits.toLocaleString()} units
+            </td>
+          </tr>
 
-        {/* Row 2 */}
-        <div>
-          <input 
-            type="range"
-            value={annualGrowthRate}
-            onChange={(e) => setAnnualGrowthRate(Number(e.target.value))}
-            min={-10}
-            max={10}
-            step={0.1}
-            className="w-full"
-          />
-        </div>
-        <div className="text-sm font-medium">Annual Housing Growth Rate</div>
-        <div className="text-sm">
-          {annualGrowthRate}% • {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
-        </div>
+          {/* Row 2 */}
+          <tr className="h-16">
+            <td>
+              <input 
+                type="range"
+                value={annualGrowthRate}
+                onChange={(e) => setAnnualGrowthRate(Number(e.target.value))}
+                min={-10}
+                max={10}
+                step={0.1}
+                className="w-full"
+              />
+            </td>
+            <td className="px-4 text-sm font-medium">
+              Annual Housing Growth Rate
+            </td>
+            <td className="text-sm">
+              {annualGrowthRate}% • {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
+            </td>
+          </tr>
 
-        {/* Row 3 */}
-        <div>
-          <input 
-            type="range"
-            value={monthlyInflow}
-            onChange={(e) => setMonthlyInflow(Number(e.target.value))}
-            min={0}
-            max={500}
-            step={5}
-            className="w-full"
-          />
-        </div>
-        <div className="text-sm font-medium">Monthly New Residents</div>
-        <div className="text-sm">
-          {monthlyInflow} residents/month • Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
-        </div>
+          {/* Row 3 */}
+          <tr className="h-16">
+            <td>
+              <input 
+                type="range"
+                value={monthlyInflow}
+                onChange={(e) => setMonthlyInflow(Number(e.target.value))}
+                min={0}
+                max={500}
+                step={5}
+                className="w-full"
+              />
+            </td>
+            <td className="px-4 text-sm font-medium">
+              Monthly New Residents
+            </td>
+            <td className="text-sm">
+              {monthlyInflow} residents/month • Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
+            </td>
+          </tr>
 
-        {/* Row 4 */}
-        <div>
-          <input 
-            type="range"
-            value={stayLength}
-            onChange={(e) => setStayLength(Number(e.target.value))}
-            min={1}
-            max={10}
-            step={0.5}
-            className="w-full"
-          />
-        </div>
-        <div className="text-sm font-medium">Average Length of Stay</div>
-        <div className="text-sm">
-          {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover
-        </div>
-      </div>
+          {/* Row 4 */}
+          <tr className="h-16">
+            <td>
+              <input 
+                type="range"
+                value={stayLength}
+                onChange={(e) => setStayLength(Number(e.target.value))}
+                min={1}
+                max={10}
+                step={0.5}
+                className="w-full"
+              />
+            </td>
+            <td className="px-4 text-sm font-medium">
+              Average Length of Stay
+            </td>
+            <td className="text-sm">
+              {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <div className="h-96">
         <LineChart
