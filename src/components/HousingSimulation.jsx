@@ -39,93 +39,76 @@ const HousingSimulation = () => {
   };
 
   const yearOneChange = Math.round(initialUnits * (annualGrowthRate/100));
-  const changeDescription = yearOneChange >= 0 ? `Added` : `Removed`;
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Projection</h1>
       
-      <div className="grid grid-cols-[1fr,auto] gap-8 mb-6">
-        {/* Controls Column */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <input 
-              type="range" 
-              value={initialUnits}
-              onChange={(e) => setInitialUnits(Number(e.target.value))}
-              min={8000}
-              max={20000}
-              step={100}
-              className="w-64"
-            />
-            <span className="text-sm font-medium whitespace-nowrap">Total Housing Units at Start</span>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <input 
-              type="range"
-              value={annualGrowthRate}
-              onChange={(e) => setAnnualGrowthRate(Number(e.target.value))}
-              min={-10}
-              max={10}
-              step={0.1}
-              className="w-64"
-            />
-            <span className="text-sm font-medium whitespace-nowrap">Annual Housing Growth Rate</span>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <input 
-              type="range"
-              value={monthlyInflow}
-              onChange={(e) => setMonthlyInflow(Number(e.target.value))}
-              min={0}
-              max={500}
-              step={5}
-              className="w-64"
-            />
-            <span className="text-sm font-medium whitespace-nowrap">Monthly New Residents</span>
-          </div>
+      <div className="grid grid-cols-[auto,1fr,auto] gap-x-8 gap-y-6 mb-6 items-center">
+        {/* Column 1: Sliders */}
+        <input 
+          type="range" 
+          value={initialUnits}
+          onChange={(e) => setInitialUnits(Number(e.target.value))}
+          min={8000}
+          max={20000}
+          step={100}
+          className="w-64"
+        />
+        <input 
+          type="range"
+          value={annualGrowthRate}
+          onChange={(e) => setAnnualGrowthRate(Number(e.target.value))}
+          min={-10}
+          max={10}
+          step={0.1}
+          className="w-64"
+        />
+        <input 
+          type="range"
+          value={monthlyInflow}
+          onChange={(e) => setMonthlyInflow(Number(e.target.value))}
+          min={0}
+          max={500}
+          step={5}
+          className="w-64"
+        />
+        <input 
+          type="range"
+          value={stayLength}
+          onChange={(e) => setStayLength(Number(e.target.value))}
+          min={1}
+          max={10}
+          step={0.5}
+          className="w-64"
+        />
 
-          <div className="flex items-center gap-4">
-            <input 
-              type="range"
-              value={stayLength}
-              onChange={(e) => setStayLength(Number(e.target.value))}
-              min={1}
-              max={10}
-              step={0.5}
-              className="w-64"
-            />
-            <span className="text-sm font-medium whitespace-nowrap">Average Length of Stay (Years)</span>
+        {/* Column 2: Labels */}
+        <span className="text-sm font-medium">Total Housing Units at Start</span>
+        <span className="text-sm font-medium">Annual Housing Growth Rate</span>
+        <span className="text-sm font-medium">Monthly New Residents</span>
+        <span className="text-sm font-medium">Average Length of Stay</span>
+
+        {/* Column 3: Values */}
+        <div className="text-sm">
+          <div>{initialUnits.toLocaleString()} units</div>
+        </div>
+        <div className="text-sm">
+          <div>{annualGrowthRate}%</div>
+          <div className="text-gray-600">
+            {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
           </div>
         </div>
-
-        {/* Values Column */}
-        <div className="space-y-6 min-w-[200px]">
-          <div className="text-sm">
-            <div className="font-medium">{initialUnits.toLocaleString()} units</div>
+        <div className="text-sm">
+          <div>{monthlyInflow} residents/month</div>
+          <div className="text-gray-600">
+            Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
           </div>
-          
-          <div className="text-sm">
-            <div className="font-medium">{annualGrowthRate}%</div>
-            <div className="text-gray-600">
-              {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
-            </div>
-          </div>
-          
-          <div className="text-sm">
-            <div className="font-medium">{monthlyInflow} residents/month</div>
-            <div className="text-gray-600">
-              Current Occupancy: {Math.round((calculateOccupancy()[0].occupancyRate) * 10) / 10}%
-            </div>
-          </div>
-
-          <div className="text-sm">
-            <div className="font-medium">{stayLength} years</div>
-            <div className="text-gray-600">
-              {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover
-            </div>
+        </div>
+        <div className="text-sm">
+          <div>{stayLength} years</div>
+          <div className="text-gray-600">
+            {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover
           </div>
         </div>
       </div>
