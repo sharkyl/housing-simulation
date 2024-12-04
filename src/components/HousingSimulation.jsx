@@ -42,8 +42,8 @@ const HousingSimulation = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Projection</h1>
-      
+      <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Projection (Simulation)</h1>
+      This model simulates the effect of churn on HSH inventory.
       <table className="w-full mb-8">
         <tbody>
           {/* Row 1 */}
@@ -131,7 +131,7 @@ const HousingSimulation = () => {
           </tr>
         </tbody>
       </table>
-
+<br></br>
       <div className="h-96">
         <LineChart
           width={700}
