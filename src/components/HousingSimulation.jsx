@@ -134,26 +134,17 @@ const HousingSimulation = () => {
         </tbody>
       </table>
 
-      <div className="h-96">
-        <div className="mb-4">
-          <Legend 
-            payload={[
-              { value: 'Total Units', type: 'line', color: '#2563eb' },
-              { value: 'Occupied Units', type: 'line', color: '#16a34a' },
-              { value: 'Occupancy Rate', type: 'line', color: '#dc2626' }
-            ]}
-          />
-        </div>
+ <div className="h-96">
         <LineChart
           width={700}
           height={350}
           data={occupancyData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 50 }}
+          margin={{ top: 25, right: 30, left: 20, bottom: 25 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
             dataKey="year" 
-            label={{ value: 'Years', position: 'bottom', dy: 35 }}
+            label={{ value: 'Years', position: 'bottom', dy: 15 }}
           />
           <YAxis 
             yAxisId="left"
@@ -170,6 +161,10 @@ const HousingSimulation = () => {
               if (name === 'occupancyRate') return `${value}%`;
               return value.toLocaleString();
             }}
+          />
+          <Legend 
+            verticalAlign="top"
+            height={36}
           />
           <Line 
             type="monotone" 
