@@ -45,11 +45,13 @@ const HousingSimulation = () => {
   const month1Occupancy = Math.round(occupancyData[0].occupancyRate * 10) / 10;
   const endingOccupancy = Math.round(occupancyData[occupancyData.length - 1].occupancyRate * 10) / 10;
   
-  // Calculate year 1 and year 10 budgets
+  // Calculate year 1 and year 10 budgets and capacities
   const year1Units = occupancyData[12].units;
   const year10Units = occupancyData[occupancyData.length - 1].units;
   const year1Budget = year1Units * housingCost;
   const year10Budget = year10Units * housingCost;
+  const month1Capacity = Math.round(year1Units * 0.93);
+  const year10Capacity = Math.round(year10Units * 0.93);
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
@@ -168,22 +170,33 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 6 Occupancy Rates with Budget */}
+          {/* Row 6 Occupancy Rates */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
-              Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
+              Month 1 Occupancy rate: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
             </td>
             <td className="text-sm">
-              Year 1 Budget: ${year1Budget.toLocaleString()}
+              Year 10 Occupancy rate: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
             </td>
           </tr>
 
+          {/* Row 7 Budget */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
-              Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+              Year 1 Budget: ${year1Budget.toLocaleString()}
             </td>
             <td className="text-sm">
               Year 10 Budget: ${year10Budget.toLocaleString()}
+            </td>
+          </tr>
+
+          {/* Row 8 Resident capacity */}
+          <tr className="h-16">
+            <td colSpan="2" className="text-sm">
+              Month 1 resident capacity at 93%: {month1Capacity.toLocaleString()} residents
+            </td>
+            <td className="text-sm">
+              Year 10 resident capacity at 93%: {year10Capacity.toLocaleString()} residents
             </td>
           </tr>
 
