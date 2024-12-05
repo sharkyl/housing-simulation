@@ -180,6 +180,7 @@ const HousingSimulation = () => {
             label={{ value: 'Occupancy %', angle: 90, position: 'insideRight' }}
           />
           <Tooltip 
+            labelFormatter={(label) => `Year ${label}`}
             formatter={(value, name) => {
               if (name === 'occupancyRate') return `${value}%`;
               return value.toLocaleString();
