@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const HousingSimulation = () => {
-  // const [initialUnits, setInitialUnits] = useState(9070);  // commented out original row
   const [housingCost, setHousingCost] = useState(40000);
   const [monthlyInflow, setMonthlyInflow] = useState(70);
   const [stayLength, setStayLength] = useState(10);
   const [annualGrowthRate, setAnnualGrowthRate] = useState(0);
-  const initialUnits = 9070; // made constant since slider removed
+  const initialUnits = 9070;
   const initialOccupied = Math.round(initialUnits * 0.93);
   const years = 10;
 
@@ -44,20 +43,25 @@ const HousingSimulation = () => {
   const yearOneChange = Math.round(initialUnits * (annualGrowthRate/100));
   const month1Occupancy = Math.round(occupancyData[0].occupancyRate * 10) / 10;
   const endingOccupancy = Math.round(occupancyData[occupancyData.length - 1].occupancyRate * 10) / 10;
-  
-  // Calculate year 1 and year 10 budgets and capacities
+
+  // Calculate budgets
   const year1Units = occupancyData[12].units;
-  const month1Units = occupancyData[0].units;
   const year10Units = occupancyData[occupancyData.length - 1].units;
   const year1Budget = year1Units * housingCost;
   const year10Budget = year10Units * housingCost;
-  const month1Capacity = Math.round(year1Units * 0.93);
-  const year10Capacity = Math.round(year10Units * 0.93);
 
-  //  93% Capacity calculations:
-  const monthlyTurnover = 1 / (stayLength * 12);
-  const month1AvailableUnits = Math.round(month1Units * monthlyTurnover);
-  const year10AvailableUnits = Math.round(year10Units * monthlyTurnover);
+  // Calculate capacity and availability
+  const month1Units = occupancyData[0].units;
+  const month1Occupied = occupancyData[0].occupied;
+  const year10Occupied = occupancyData[occupancyData.length - 1].occupied;
+
+  // Calculate units available to reach 93% occupancy
+  const month1TargetOccupied = Math.round(month1Units * 0.93);
+  const year10TargetOccupied = Math.round(year10Units * 0.93);
+  const month1AvailableUnits = month1TargetOccupied - month1Occupied;
+  const year10AvailableUnits = year10TargetOccupied - year10Occupied;
+  const month1AnnualAvailable = month1AvailableUnits * 12;
+  const year10AnnualAvailable = year10AvailableUnits * 12;
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
@@ -80,12 +84,11 @@ const HousingSimulation = () => {
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
       HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br>
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
-        Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
+      Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
       <h3>Housing Simulation</h3>
       <table className="w-full mb-8">
         <tbody>
-          {/* New Row 1 - Housing Cost */}
           <tr className="h-16">
             <td className="w-48 text-sm font-medium">
               Housing Cost per Unit
@@ -106,7 +109,6 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 2 */}
           <tr className="h-16">
             <td className="text-sm font-medium">
               Annual Housing Growth Rate
@@ -127,7 +129,6 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 3 */}
           <tr className="h-16">
             <td className="text-sm font-medium">
               Monthly Inflow New People
@@ -148,7 +149,6 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 4 */}
           <tr className="h-16">
             <td className="text-sm font-medium">
               Average Length of Stay
@@ -169,14 +169,12 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 5 - divider */}
           <tr>
             <td colSpan="3">
               <hr></hr>
             </td>
           </tr>
 
-          {/* Row 6 Occupancy Rates */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
               Month 1 Occupancy rate: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
@@ -186,7 +184,6 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 7 Budget */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
               Year 1 Budget: ${year1Budget.toLocaleString()}
@@ -196,20 +193,17 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 8 Month 1Capacity */}
           <tr className="h-16">
             <td colSpan="3" className="text-sm">
-              Monthly new resident capacity at 93% occupancy: {month1AvailableUnits.toLocaleString()} units/month
+              Month 1 capacity available to reach 93%: {month1AvailableUnits.toLocaleString()} units/month ({month1AnnualAvailable.toLocaleString()} annually)
             </td>
           </tr>
 
-          {/* Row 9 Year 10 Capacity */}
           <tr className="h-16">
             <td colSpan="3" className="text-sm">
-              Year 10 resident capacity at 93% occupancy: {year10AvailableUnits.toLocaleString()} units/month
+              Year 10 capacity available to reach 93%: {year10AvailableUnits.toLocaleString()} units/month ({year10AnnualAvailable.toLocaleString()} annually)
             </td>
           </tr>
-
         </tbody>
       </table>
 
