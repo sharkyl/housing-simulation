@@ -66,7 +66,7 @@ const HousingSimulation = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
@@ -74,14 +74,14 @@ const HousingSimulation = () => {
         Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
 <h3>Housing Simulation</h3>
-      <table className="w-full mb-8">
+<table className="w-full mb-8">
         <tbody>
           {/* Row 1 */}
           <tr className="h-16">
-            <td className="w-64 text-sm font-medium">
+            <td className="w-48 text-sm font-medium">
               Total Housing Units at Start
             </td>
-            <td className="w-64 px-4">
+            <td className="w-96 px-4">
               <input 
                 type="range" 
                 value={initialUnits}
@@ -161,6 +161,7 @@ const HousingSimulation = () => {
           </tr>
         </tbody>
       </table>
+
 
       <div className="h-96">
         <LineChart
