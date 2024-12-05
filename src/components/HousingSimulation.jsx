@@ -70,7 +70,8 @@ const HousingSimulation = () => {
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
-      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br><br></br>
+      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br>
+      Hitting refresh on your browser will restore all values to default.<br></br><br></br>
         Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
 <h3>Housing Simulation</h3>
@@ -114,7 +115,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {annualGrowthRate}% • {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
+              {annualGrowthRate}% = {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
             </td>
           </tr>
 
@@ -156,11 +157,18 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover • {Math.round((1 / stayLength) * 1000) / 10}% annual turnover
+              {stayLength} years = {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover ({Math.round((1 / stayLength) * 1000) / 10}% annual)
             </td>
           </tr>
 
-          {/* New Row 5 for Occupancy Rates */}
+          {/* Row 5 - divider */}
+          <tr>
+            <td colspan="3">
+              <hr></hr>
+            </td>
+          </tr>
+
+          {/* Row 6 Occupancy Rates */}
           <tr className="h-16">
             <td colspan="3" className="text-sm">
               Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
