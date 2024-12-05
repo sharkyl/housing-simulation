@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 
 const HousingSimulation = () => {
   const [initialUnits, setInitialUnits] = useState(9070);
-  const [monthlyInflow, setMonthlyInflow] = useState(151);
+  const [monthlyInflow, setMonthlyInflow] = useState(70);
   const [stayLength, setStayLength] = useState(10);
   const [annualGrowthRate, setAnnualGrowthRate] = useState(0);
   const initialOccupied = Math.round(9070 * 0.93);
