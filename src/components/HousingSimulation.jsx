@@ -70,7 +70,7 @@ const HousingSimulation = () => {
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
-      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when that rate is hit. <br></br>
+      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when that rate is hit. <br></br><br></br>
         Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
 <h3>Housing Simulation</h3>
