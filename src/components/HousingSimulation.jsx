@@ -199,10 +199,10 @@ const HousingSimulation = () => {
           {/* Row 8 Capacity */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
-              Month 1 new units at 93%: {month1AvailableUnits.toLocaleString()} units/month
+              New resident capacity at 93%: {month1AvailableUnits.toLocaleString()} units/month
             </td>
             <td className="text-sm">
-              Year 10 new units at 93%: {year10AvailableUnits.toLocaleString()} units/month
+              Year 10 resident capacity: {year10AvailableUnits.toLocaleString()} units/month
             </td>
           </tr>
 
