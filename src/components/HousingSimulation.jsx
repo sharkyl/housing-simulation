@@ -43,22 +43,26 @@ const HousingSimulation = () => {
   const month1Occupancy = Math.round(occupancyData[0].occupancyRate * 10) / 10;
   const endingOccupancy = Math.round(occupancyData[occupancyData.length - 1].occupancyRate * 10) / 10;
 
-  // More precise target range check
-  const isTargetOccupancy = (rate) => {
-    const numRate = Number(rate);
-    return numRate >= 92.5 && numRate <= 93.5;
-  };
-
   // Debug logging
   useEffect(() => {
     console.log('Month 1 Occupancy:', month1Occupancy);
     console.log('Year 10 Occupancy:', endingOccupancy);
-    console.log('Month 1 in target range:', isTargetOccupancy(month1Occupancy));
-    console.log('Year 10 in target range:', isTargetOccupancy(endingOccupancy));
+    console.log('Month 1 in target range:', month1Occupancy >= 92.5 && month1Occupancy <= 93.5);
+    console.log('Year 10 in target range:', endingOccupancy >= 92.5 && endingOccupancy <= 93.5);
   }, [month1Occupancy, endingOccupancy]);
 
-  const getOccupancyClassName = (rate) => {
-    return isTargetOccupancy(rate) ? "text-green-600 font-bold" : "text-inherit";
+  const getOccupancyStyles = (rate) => {
+    const numRate = Number(rate);
+    if (numRate >= 92.5 && numRate <= 93.5) {
+      return {
+        color: '#16a34a', // text-green-600 equivalent
+        fontWeight: 700,  // font-bold equivalent
+        transition: 'all 0.3s'
+      };
+    }
+    return {
+      transition: 'all 0.3s'
+    };
   };
 
   return (
@@ -126,7 +130,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} residents/month • Month 1 Occupancy: <span className={getOccupancyClassName(month1Occupancy)} style={{transition: 'all 0.3s'}}>{month1Occupancy}%</span> • Year 10 Occupancy: <span className={getOccupancyClassName(endingOccupancy)} style={{transition: 'all 0.3s'}}>{endingOccupancy}%</span>
+              {monthlyInflow} residents/month • Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> • Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
             </td>
           </tr>
 
@@ -213,4 +217,3 @@ const HousingSimulation = () => {
 };
 
 export default HousingSimulation;
-
