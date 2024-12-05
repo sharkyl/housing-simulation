@@ -130,7 +130,7 @@ const HousingSimulation = () => {
           {/* Row 3 */}
           <tr className="h-16">
             <td className="text-sm font-medium">
-              Monthly new units available
+              Monthly Inflow New People
             </td>
             <td className="px-4">
               <input 
@@ -144,7 +144,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} Units/month ({monthlyInflow * 12} annually)
+              {monthlyInflow} Residents/month ({monthlyInflow * 12} annually)
             </td>
           </tr>
 
@@ -165,7 +165,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {stayLength} years = {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover ({Math.round((1 / stayLength) * 1000) / 10}% annual)
+              {stayLength} years = {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly churn ({Math.round((1 / stayLength) * 1000) / 10}% annual)
             </td>
           </tr>
 
@@ -196,13 +196,13 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          // Update Row 8:
+          {/* Row 8 Capacity */}
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
-              Month 1 available units at 93%: {month1AvailableUnits.toLocaleString()} units/month
+              Month 1 new units at 93%: {month1AvailableUnits.toLocaleString()} units/month
             </td>
             <td className="text-sm">
-              Year 10 available units at 93%: {year10AvailableUnits.toLocaleString()} units/month
+              Year 10 new units at 93%: {year10AvailableUnits.toLocaleString()} units/month
             </td>
           </tr>
 
