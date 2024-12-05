@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const HousingSimulation = () => {
-  const [initialUnits, setInitialUnits] = useState(9070);
+  // const [initialUnits, setInitialUnits] = useState(9070);  // commented out original row
+  const [housingCost, setHousingCost] = useState(40000);
   const [monthlyInflow, setMonthlyInflow] = useState(70);
   const [stayLength, setStayLength] = useState(10);
   const [annualGrowthRate, setAnnualGrowthRate] = useState(0);
-  const initialOccupied = Math.round(9070 * 0.93);
+  const initialUnits = 9070; // made constant since slider removed
+  const initialOccupied = Math.round(initialUnits * 0.93);
   const years = 10;
 
   const calculateOccupancy = () => {
@@ -42,21 +44,19 @@ const HousingSimulation = () => {
   const yearOneChange = Math.round(initialUnits * (annualGrowthRate/100));
   const month1Occupancy = Math.round(occupancyData[0].occupancyRate * 10) / 10;
   const endingOccupancy = Math.round(occupancyData[occupancyData.length - 1].occupancyRate * 10) / 10;
-
-  // Debug logging
-  useEffect(() => {
-    console.log('Month 1 Occupancy:', month1Occupancy);
-    console.log('Year 10 Occupancy:', endingOccupancy);
-    console.log('Month 1 in target range:', month1Occupancy >= 92 && month1Occupancy <= 94);
-    console.log('Year 10 in target range:', endingOccupancy >= 92 && endingOccupancy <= 94);
-  }, [month1Occupancy, endingOccupancy]);
+  
+  // Calculate year 1 and year 10 budgets
+  const year1Units = occupancyData[12].units;
+  const year10Units = occupancyData[occupancyData.length - 1].units;
+  const year1Budget = year1Units * housingCost;
+  const year10Budget = year10Units * housingCost;
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
     if (numRate >= 92 && numRate <= 94) {
       return {
-        color: '#16a34a', // text-green-600 equivalent
-        fontWeight: 700,  // font-bold equivalent
+        color: '#16a34a',
+        fontWeight: 700,
         transition: 'all 0.3s'
       };
     }
@@ -74,27 +74,27 @@ const HousingSimulation = () => {
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
         Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
-<h3>Housing Simulation</h3>
-<table className="w-full mb-8">
+      <h3>Housing Simulation</h3>
+      <table className="w-full mb-8">
         <tbody>
-          {/* Row 1 */}
+          {/* New Row 1 - Housing Cost */}
           <tr className="h-16">
             <td className="w-48 text-sm font-medium">
-              Total Housing Units at Start
+              Housing Cost per Unit
             </td>
             <td className="w-96 px-4">
               <input 
                 type="range" 
-                value={initialUnits}
-                onChange={(e) => setInitialUnits(Number(e.target.value))}
-                min={8000}
-                max={20000}
-                step={100}
+                value={housingCost}
+                onChange={(e) => setHousingCost(Number(e.target.value))}
+                min={20000}
+                max={70000}
+                step={1000}
                 className="w-full"
               />
             </td>
             <td className="text-sm">
-              {initialUnits.toLocaleString()} units
+              ${housingCost.toLocaleString()}
             </td>
           </tr>
 
@@ -163,27 +163,32 @@ const HousingSimulation = () => {
 
           {/* Row 5 - divider */}
           <tr>
-            <td colspan="3">
+            <td colSpan="3">
               <hr></hr>
             </td>
           </tr>
 
-          {/* Row 6 Occupancy Rates */}
+          {/* Row 6 Occupancy Rates with Budget */}
           <tr className="h-16">
-            <td colspan="3" className="text-sm">
+            <td colSpan="2" className="text-sm">
               Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
+            </td>
+            <td className="text-sm">
+              Year 1 Budget: ${year1Budget.toLocaleString()}
             </td>
           </tr>
 
           <tr className="h-16">
-            <td colspan="3" className="text-sm">
+            <td colSpan="2" className="text-sm">
               Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+            </td>
+            <td className="text-sm">
+              Year 10 Budget: ${year10Budget.toLocaleString()}
             </td>
           </tr>
 
         </tbody>
       </table>
-
 
       <div className="h-96">
         <LineChart
