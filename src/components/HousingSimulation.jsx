@@ -135,7 +135,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} residents/month • Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> • Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+              {monthlyInflow} residents/month ({monthlyInflow * 12} annually)
             </td>
           </tr>
 
@@ -157,6 +157,15 @@ const HousingSimulation = () => {
             </td>
             <td className="text-sm">
               {stayLength} years • {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly turnover • {Math.round((1 / stayLength) * 1000) / 10}% annual turnover
+            </td>
+          </tr>
+
+          {/* New Row 5 for Occupancy Rates */}
+          <tr className="h-16">
+            <td></td>
+            <td></td>
+            <td className="text-sm">
+              Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> • Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
             </td>
           </tr>
         </tbody>
