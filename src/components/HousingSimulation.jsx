@@ -47,16 +47,15 @@ const HousingSimulation = () => {
   
   // Calculate year 1 and year 10 budgets and capacities
   const year1Units = occupancyData[12].units;
+  const month1Units = occupancyData[0].units;
   const year10Units = occupancyData[occupancyData.length - 1].units;
   const year1Budget = year1Units * housingCost;
   const year10Budget = year10Units * housingCost;
   const month1Capacity = Math.round(year1Units * 0.93);
   const year10Capacity = Math.round(year10Units * 0.93);
 
-  //  Capacity calculations:
+  //  93% Capacity calculations:
   const monthlyTurnover = 1 / (stayLength * 12);
-  const month1Units = occupancyData[0].units;
-  const year10Units = occupancyData[occupancyData.length - 1].units;
   const month1AvailableUnits = Math.round(month1Units * monthlyTurnover);
   const year10AvailableUnits = Math.round(year10Units * monthlyTurnover);
 
