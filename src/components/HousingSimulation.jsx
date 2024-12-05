@@ -47,13 +47,13 @@ const HousingSimulation = () => {
   useEffect(() => {
     console.log('Month 1 Occupancy:', month1Occupancy);
     console.log('Year 10 Occupancy:', endingOccupancy);
-    console.log('Month 1 in target range:', month1Occupancy >= 92.5 && month1Occupancy <= 93.5);
-    console.log('Year 10 in target range:', endingOccupancy >= 92.5 && endingOccupancy <= 93.5);
+    console.log('Month 1 in target range:', month1Occupancy >= 92 && month1Occupancy <= 94);
+    console.log('Year 10 in target range:', endingOccupancy >= 92 && endingOccupancy <= 94);
   }, [month1Occupancy, endingOccupancy]);
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
-    if (numRate >= 92.5 && numRate <= 93.5) {
+    if (numRate >= 92 && numRate <= 94) {
       return {
         color: '#16a34a', // text-green-600 equivalent
         fontWeight: 700,  // font-bold equivalent
@@ -70,7 +70,7 @@ const HousingSimulation = () => {
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
-      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when that rate is hit. <br></br><br></br>
+      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br><br></br>
         Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
 <h3>Housing Simulation</h3>
