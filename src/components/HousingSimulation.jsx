@@ -53,6 +53,13 @@ const HousingSimulation = () => {
   const month1Capacity = Math.round(year1Units * 0.93);
   const year10Capacity = Math.round(year10Units * 0.93);
 
+  //  Capacity calculations:
+  const monthlyTurnover = 1 / (stayLength * 12);
+  const month1Units = occupancyData[0].units;
+  const year10Units = occupancyData[occupancyData.length - 1].units;
+  const month1AvailableUnits = Math.round(month1Units * monthlyTurnover);
+  const year10AvailableUnits = Math.round(year10Units * monthlyTurnover);
+
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
     if (numRate >= 92 && numRate <= 94) {
@@ -124,7 +131,7 @@ const HousingSimulation = () => {
           {/* Row 3 */}
           <tr className="h-16">
             <td className="text-sm font-medium">
-              Monthly New Residents
+              Monthly new units available
             </td>
             <td className="px-4">
               <input 
@@ -138,7 +145,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} residents/month ({monthlyInflow * 12} annually)
+              {monthlyInflow} Units/month ({monthlyInflow * 12} annually)
             </td>
           </tr>
 
@@ -190,13 +197,13 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 8 Resident capacity */}
+          // Update Row 8:
           <tr className="h-16">
             <td colSpan="2" className="text-sm">
-              Month 1 capacity: {month1Capacity.toLocaleString()} residents
+              Month 1 available units at 93%: {month1AvailableUnits.toLocaleString()} units/month
             </td>
             <td className="text-sm">
-              Year 10 capacity: {year10Capacity.toLocaleString()} residents
+              Year 10 available units at 93%: {year10AvailableUnits.toLocaleString()} units/month
             </td>
           </tr>
 
