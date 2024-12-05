@@ -163,9 +163,16 @@ const HousingSimulation = () => {
           {/* New Row 5 for Occupancy Rates */}
           <tr className="h-16">
             <td colspan="3" className="text-sm">
-              Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> • Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+              Month 1 Occupancy: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span> 
             </td>
           </tr>
+
+          <tr className="h-16">
+            <td colspan="3" className="text-sm">
+              Year 10 Occupancy: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+            </td>
+          </tr>
+
         </tbody>
       </table>
 
