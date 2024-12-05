@@ -196,13 +196,17 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          {/* Row 8 Capacity */}
+          {/* Row 8 Month 1Capacity */}
           <tr className="h-16">
-            <td colSpan="2" className="text-sm">
-              New resident capacity at 93%: {month1AvailableUnits.toLocaleString()} units/month
+            <td colSpan="3" className="text-sm">
+              Monthly new resident capacity at 93% occupancy: {month1AvailableUnits.toLocaleString()} units/month
             </td>
-            <td className="text-sm">
-              Year 10 resident capacity: {year10AvailableUnits.toLocaleString()} units/month
+          </tr>
+
+          {/* Row 9 Year 10 Capacity */}
+          <tr className="h-16">
+            <td colSpan="3" className="text-sm">
+              Year 10 resident capacity at 93% occupancy: {year10AvailableUnits.toLocaleString()} units/month
             </td>
           </tr>
 
