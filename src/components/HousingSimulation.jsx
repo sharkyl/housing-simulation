@@ -97,7 +97,7 @@ const HousingSimulation = () => {
 
   // Calculate availability
   const monthlyTurnover = 1 / (stayLength * 12);
-  const availability = calculateAvailability(initialOccupied, 0.93, monthlyTurnover);
+  const availability = calculateAvailability();
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
