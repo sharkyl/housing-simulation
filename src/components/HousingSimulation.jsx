@@ -29,6 +29,13 @@ const calculateAvailability = () => {
         
         // Calculate unit growth for this month
         const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
+        
+        // Add new units to cumulative availability (they represent new housing opportunities)
+        if (newUnits > 0) {
+            cumulativeAvailable += newUnits;
+        }
+        
+        // Update total units
         currentUnits += newUnits;
         
         // Calculate turnover based on occupied units
