@@ -238,7 +238,7 @@ const HousingSimulation = () => {
 
           <tr className="h-16">
             <td colSpan="3" className="text-sm">
-              Cumulative available units over 10 years: {availability.cumulativeAvailable.toLocaleString()} units
+              <b>Cumulative available units over 10 years: {availability.cumulativeAvailable.toLocaleString()} units</b>
             </td>
           </tr>
         </tbody>
