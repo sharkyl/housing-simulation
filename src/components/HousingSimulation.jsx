@@ -15,7 +15,7 @@ const calculateAvailability = () => {
     let currentUnits = initialUnits;
     let occupiedUnits = initialOccupied;
     const monthlyGrowthRate = annualGrowthRate / (100 * 12);
-    let previousOccupied = occupiedUnits;  // Track previous month's occupied units
+    let previousOccupied = occupiedUnits;
 
     // Calculate first month values
     const month1Units = currentUnits;
@@ -24,23 +24,25 @@ const calculateAvailability = () => {
 
     // Calculate cumulative availability over 10 years
     for (let month = 0; month <= years * 12; month++) {
-      // Store previous month's occupied units for turnover calculation
-      previousOccupied = occupiedUnits;
-      
-      // Calculate unit growth for this month
-      const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
-      currentUnits += newUnits;
-      
-      // Calculate turnover from previous month's occupied units
-      const monthlyTurnoverRate = 1 / (stayLength * 12);
-      const thisMonthTurnover = Math.round(previousOccupied * monthlyTurnoverRate);
-      
-      // Update occupied units for next month
-      occupiedUnits = occupiedUnits - thisMonthTurnover + monthlyInflow;
-      occupiedUnits = Math.min(occupiedUnits, currentUnits);
-      
-      // Add turnover to cumulative after occupancy is updated
-      cumulativeAvailable += thisMonthTurnover;
+        // Store previous month's occupied units for turnover calculation
+        previousOccupied = occupiedUnits;
+        
+        // Calculate unit growth for this month
+        const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
+        currentUnits += newUnits;
+        
+        // Calculate turnover based on occupied units
+        const monthlyTurnoverRate = 1 / (stayLength * 12);
+        const thisMonthTurnover = Math.round(previousOccupied * monthlyTurnoverRate);
+        
+        // Update occupied units for next month, accounting for growth
+        occupiedUnits = Math.min(
+            occupiedUnits - thisMonthTurnover + monthlyInflow,
+            currentUnits // Limit occupancy to available units
+        );
+        
+        // Add turnover to cumulative
+        cumulativeAvailable += thisMonthTurnover;
     }
 
     // Store final values
@@ -49,11 +51,11 @@ const calculateAvailability = () => {
     const year10AvailableUnits = year10TargetOccupied - occupiedUnits;
 
     return {
-      month1AvailableUnits,
-      month1AnnualAvailable: month1AvailableUnits * 12,
-      year10AvailableUnits,
-      year10AnnualAvailable: year10AvailableUnits * 12,
-      cumulativeAvailable
+        month1AvailableUnits,
+        month1AnnualAvailable: month1AvailableUnits * 12,
+        year10AvailableUnits,
+        year10AnnualAvailable: year10AvailableUnits * 12,
+        cumulativeAvailable
     };
 };
 
