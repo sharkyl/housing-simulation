@@ -25,14 +25,21 @@ const HousingSimulation = () => {
 
     // Calculate cumulative availability over 10 years
     for (let month = 0; month <= years * 12; month++) {
+      // First calculate new units from growth
       const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
       currentUnits += newUnits;
       
-      const monthlyTurnover = Math.round(occupiedUnits * (1 / (stayLength * 12)));
-      occupiedUnits = occupiedUnits - monthlyTurnover + monthlyInflow;
-      occupiedUnits = Math.min(occupiedUnits, currentUnits);
+      // Calculate turnover based on current occupied units
+      const currentMonthlyTurnover = Math.round(occupiedUnits * (1 / (stayLength * 12)));
       
-      cumulativeAvailable += monthlyTurnover;
+      // Add turnover to cumulative availability
+      cumulativeAvailable += currentMonthlyTurnover;
+      
+      // Update occupied units count
+      occupiedUnits = Math.min(
+        occupiedUnits - currentMonthlyTurnover + monthlyInflow,
+        currentUnits
+      );
     }
 
     const year10Units = currentUnits;
