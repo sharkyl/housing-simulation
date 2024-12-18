@@ -81,7 +81,7 @@ const HousingSimulation = () => {
     <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
-      This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates.<br></br>
+      This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates, and budget.<br></br>
       HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br>
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
       Feedback? Please email: <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
@@ -193,7 +193,7 @@ const HousingSimulation = () => {
             </td>
           </tr>
 
-          <tr className="h-16">
+{/*           <tr className="h-16">
             <td colSpan="3" className="text-sm">
               Month 1 capacity available to reach 93%: {month1AvailableUnits.toLocaleString()} units/month ({month1AnnualAvailable.toLocaleString()} annually)
             </td>
@@ -203,7 +203,7 @@ const HousingSimulation = () => {
             <td colSpan="3" className="text-sm">
               Year 10 capacity available to reach 93%: {year10AvailableUnits.toLocaleString()} units/month ({year10AnnualAvailable.toLocaleString()} annually)
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
 
