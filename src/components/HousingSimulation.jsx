@@ -10,40 +10,39 @@ const HousingSimulation = () => {
   const initialOccupied = Math.round(initialUnits * 0.93);
   const years = 10;
 
-  const calculateAvailability = (currentOccupied, targetOccupancy, monthlyTurnover) => {
-    const turnover = Math.round(currentOccupied * monthlyTurnover);
+  const calculateAvailability = () => {
     let cumulativeAvailable = 0;
     let currentUnits = initialUnits;
-    let occupiedUnits = currentOccupied;
+    let occupiedUnits = initialOccupied;
     const monthlyGrowthRate = annualGrowthRate / (100 * 12);
 
-    // Calculate first month availability
-    const month1Turnover = turnover;
+    // Calculate first month values
     const month1Units = currentUnits;
-    const month1TargetOccupied = Math.round(month1Units * targetOccupancy);
-    const month1AvailableUnits = month1TargetOccupied - currentOccupied;
+    const month1TargetOccupied = Math.round(month1Units * 0.93);
+    const month1AvailableUnits = month1TargetOccupied - occupiedUnits;
 
     // Calculate cumulative availability over 10 years
     for (let month = 0; month <= years * 12; month++) {
-      // First calculate new units from growth
+      // Calculate unit growth for this month
       const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
       currentUnits += newUnits;
       
-      // Calculate turnover based on current occupied units
-      const currentMonthlyTurnover = Math.round(occupiedUnits * (1 / (stayLength * 12)));
+      // Calculate and add this month's turnover to cumulative
+      const monthlyTurnoverRate = 1 / (stayLength * 12);
+      const thisMonthTurnover = Math.round(occupiedUnits * monthlyTurnoverRate);
+      cumulativeAvailable += thisMonthTurnover;
       
-      // Add turnover to cumulative availability
-      cumulativeAvailable += currentMonthlyTurnover;
-      
-      // Update occupied units count
+      // Update occupied units for next month
       occupiedUnits = Math.min(
-        occupiedUnits - currentMonthlyTurnover + monthlyInflow,
+        occupiedUnits - thisMonthTurnover + monthlyInflow,
         currentUnits
       );
     }
 
+  
+    // Store final values
     const year10Units = currentUnits;
-    const year10TargetOccupied = Math.round(year10Units * targetOccupancy);
+    const year10TargetOccupied = Math.round(currentUnits * 0.93);
     const year10AvailableUnits = year10TargetOccupied - occupiedUnits;
 
     return {
@@ -54,6 +53,7 @@ const HousingSimulation = () => {
       cumulativeAvailable
     };
   };
+
 
   const calculateOccupancy = () => {
     const data = [];
