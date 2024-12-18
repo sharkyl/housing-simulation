@@ -10,11 +10,12 @@ const HousingSimulation = () => {
   const initialOccupied = Math.round(initialUnits * 0.93);
   const years = 10;
 
-  const calculateAvailability = () => {
+const calculateAvailability = () => {
     let cumulativeAvailable = 0;
     let currentUnits = initialUnits;
     let occupiedUnits = initialOccupied;
     const monthlyGrowthRate = annualGrowthRate / (100 * 12);
+    let previousOccupied = occupiedUnits;  // Track previous month's occupied units
 
     // Calculate first month values
     const month1Units = currentUnits;
@@ -23,21 +24,38 @@ const HousingSimulation = () => {
 
     // Calculate cumulative availability over 10 years
     for (let month = 0; month <= years * 12; month++) {
+      // Store previous month's occupied units for turnover calculation
+      previousOccupied = occupiedUnits;
+      
       // Calculate unit growth for this month
       const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
       currentUnits += newUnits;
       
-      // Calculate and add this month's turnover to cumulative
+      // Calculate turnover from previous month's occupied units
       const monthlyTurnoverRate = 1 / (stayLength * 12);
-      const thisMonthTurnover = Math.round(occupiedUnits * monthlyTurnoverRate);
-      cumulativeAvailable += thisMonthTurnover;
+      const thisMonthTurnover = Math.round(previousOccupied * monthlyTurnoverRate);
       
       // Update occupied units for next month
-      occupiedUnits = Math.min(
-        occupiedUnits - thisMonthTurnover + monthlyInflow,
-        currentUnits
-      );
+      occupiedUnits = occupiedUnits - thisMonthTurnover + monthlyInflow;
+      occupiedUnits = Math.min(occupiedUnits, currentUnits);
+      
+      // Add turnover to cumulative after occupancy is updated
+      cumulativeAvailable += thisMonthTurnover;
     }
+
+    // Store final values
+    const year10Units = currentUnits;
+    const year10TargetOccupied = Math.round(currentUnits * 0.93);
+    const year10AvailableUnits = year10TargetOccupied - occupiedUnits;
+
+    return {
+      month1AvailableUnits,
+      month1AnnualAvailable: month1AvailableUnits * 12,
+      year10AvailableUnits,
+      year10AnnualAvailable: year10AvailableUnits * 12,
+      cumulativeAvailable
+    };
+};
 
   
     // Store final values
