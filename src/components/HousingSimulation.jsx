@@ -10,6 +10,44 @@ const HousingSimulation = () => {
   const initialOccupied = Math.round(initialUnits * 0.93);
   const years = 10;
 
+  const calculateAvailability = (currentOccupied, targetOccupancy, monthlyTurnover) => {
+    const turnover = Math.round(currentOccupied * monthlyTurnover);
+    let cumulativeAvailable = 0;
+    let currentUnits = initialUnits;
+    let occupiedUnits = currentOccupied;
+    const monthlyGrowthRate = annualGrowthRate / (100 * 12);
+
+    // Calculate first month availability
+    const month1Turnover = turnover;
+    const month1Units = currentUnits;
+    const month1TargetOccupied = Math.round(month1Units * targetOccupancy);
+    const month1AvailableUnits = month1TargetOccupied - currentOccupied;
+
+    // Calculate cumulative availability over 10 years
+    for (let month = 0; month <= years * 12; month++) {
+      const newUnits = Math.floor(currentUnits * monthlyGrowthRate);
+      currentUnits += newUnits;
+      
+      const monthlyTurnover = Math.round(occupiedUnits * (1 / (stayLength * 12)));
+      occupiedUnits = occupiedUnits - monthlyTurnover + monthlyInflow;
+      occupiedUnits = Math.min(occupiedUnits, currentUnits);
+      
+      cumulativeAvailable += monthlyTurnover;
+    }
+
+    const year10Units = currentUnits;
+    const year10TargetOccupied = Math.round(year10Units * targetOccupancy);
+    const year10AvailableUnits = year10TargetOccupied - occupiedUnits;
+
+    return {
+      month1AvailableUnits,
+      month1AnnualAvailable: month1AvailableUnits * 12,
+      year10AvailableUnits,
+      year10AnnualAvailable: year10AvailableUnits * 12,
+      cumulativeAvailable
+    };
+  };
+
   const calculateOccupancy = () => {
     const data = [];
     let currentOccupied = initialOccupied;
@@ -50,18 +88,9 @@ const HousingSimulation = () => {
   const year1Budget = year1Units * housingCost;
   const year10Budget = year10Units * housingCost;
 
-  // Calculate capacity and availability
-  const month1Units = occupancyData[0].units;
-  const month1Occupied = occupancyData[0].occupied;
-  const year10Occupied = occupancyData[occupancyData.length - 1].occupied;
-
-  // Calculate units available to reach 93% occupancy
-  const month1TargetOccupied = Math.round(month1Units * 0.93);
-  const year10TargetOccupied = Math.round(year10Units * 0.93);
-  const month1AvailableUnits = month1TargetOccupied - month1Occupied;
-  const year10AvailableUnits = year10TargetOccupied - year10Occupied;
-  const month1AnnualAvailable = month1AvailableUnits * 12;
-  const year10AnnualAvailable = year10AvailableUnits * 12;
+  // Calculate availability
+  const monthlyTurnover = 1 / (stayLength * 12);
+  const availability = calculateAvailability(initialOccupied, 0.93, monthlyTurnover);
 
   const getOccupancyStyles = (rate) => {
     const numRate = Number(rate);
@@ -79,6 +108,8 @@ const HousingSimulation = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+      {/* Previous code remains the same until the availability rows */}
+      
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
       This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates, and budget.<br></br>
@@ -195,15 +226,21 @@ const HousingSimulation = () => {
 
 {/*           <tr className="h-16">
             <td colSpan="3" className="text-sm">
-              Month 1 capacity available to reach 93%: {month1AvailableUnits.toLocaleString()} units/month ({month1AnnualAvailable.toLocaleString()} annually)
+              Month 1 capacity available to reach 93%: {availability.month1AvailableUnits.toLocaleString()} units/month ({availability.month1AnnualAvailable.toLocaleString()} annually)
             </td>
           </tr>
 
           <tr className="h-16">
             <td colSpan="3" className="text-sm">
-              Year 10 capacity available to reach 93%: {year10AvailableUnits.toLocaleString()} units/month ({year10AnnualAvailable.toLocaleString()} annually)
+              Year 10 capacity available to reach 93%: {availability.year10AvailableUnits.toLocaleString()} units/month ({availability.year10AnnualAvailable.toLocaleString()} annually)
             </td>
           </tr> */}
+
+          <tr className="h-16">
+            <td colSpan="3" className="text-sm">
+              Cumulative available units over 10 years: {availability.cumulativeAvailable.toLocaleString()} units
+            </td>
+          </tr>
         </tbody>
       </table>
 
