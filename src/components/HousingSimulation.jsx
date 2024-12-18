@@ -162,7 +162,7 @@ const HousingSimulation = () => {
 
           <tr className="h-16">
             <td className="text-sm font-medium">
-              Monthly Inflow New People
+              Monthly Inflow 
             </td>
             <td className="px-4">
               <input 
@@ -176,7 +176,7 @@ const HousingSimulation = () => {
               />
             </td>
             <td className="text-sm">
-              {monthlyInflow} Residents/month ({monthlyInflow * 12} annually)
+              {monthlyInflow} Occupied units/month ({monthlyInflow * 12} annually)
             </td>
           </tr>
 
