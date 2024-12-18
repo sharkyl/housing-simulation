@@ -59,21 +59,6 @@ const calculateAvailability = () => {
     };
 };
 
-  
-    // Store final values
-    const year10Units = currentUnits;
-    const year10TargetOccupied = Math.round(currentUnits * 0.93);
-    const year10AvailableUnits = year10TargetOccupied - occupiedUnits;
-
-    return {
-      month1AvailableUnits,
-      month1AnnualAvailable: month1AvailableUnits * 12,
-      year10AvailableUnits,
-      year10AnnualAvailable: year10AvailableUnits * 12,
-      cumulativeAvailable
-    };
-  };
-
 
   const calculateOccupancy = () => {
     const data = [];
