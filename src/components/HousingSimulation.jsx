@@ -131,8 +131,8 @@ const calculateAvailability = () => {
       
       <h1 className="text-2xl font-bold mb-6">10-Year Housing Occupancy Simulation</h1>
       <h2>SF Homeless Oversight Commission - Data Officer Report, December 2024</h2>
-Before using this simulation model, please watch the YouTube video of this report here: <a href="https://youtu.be/yachetMaSwE?si=tbtIUSTAjGVI5CIl">https://youtu.be/yachetMaSwE?si=tbtIUSTAjGVI5CIl</a><br></br>
-      It will really help you understand what this model is trying to illustrate!<br></br><br></br>
+Before using this simulation model, please watch the YouTube video of this report here: <br></br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yachetMaSwE?si=tbtIUSTAjGVI5CIl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates, and budget.<br></br>
       HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br>
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
