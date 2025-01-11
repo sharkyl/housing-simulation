@@ -133,9 +133,15 @@ const calculateAvailability = () => {
 Before using this simulation model, please watch the YouTube video of this report here: <br></br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yachetMaSwE?si=tbtIUSTAjGVI5CIl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <br></br><br></br>
-            <h2>10-Year Housing Occupancy Simulation</h1>
-      When you are done watching the video, you can play with this housing model. This model simulates the effect of changes to the number of units, the number of residents, and average length of stay on Permanent Supportive Housing (PSH) occupancy rates, and budget.<br></br>
-      HSH's target vacancy rate is 7%, so occupancy rate numbers (for both Year 1, and Year 10) will turn green when occupancy is between 92% and 94%. <br></br>
+            <h2>Permanent Supportive Housing Simulation</h2>
+      When you are done watching the video, you can play with the permanent supportive housing simulation below. This model simulates the impact of changing permanent supportive housing inventory supply, the number of people flowing into housing, and the average length of stay of people in housing.<br></br>
+      The Homeless and Supportive Housing Department's target vacancy rate is 7%, so when occupancy rate numbers (for both Year 1, and Year 10)are between 92% and 94% they will turn green. Another way to think about this is you want the red line to stay near the top of the graph as you make adjustments. That's the "goal" you are shooting for.<br><br> A few qestions you might want to ask yourself as you play with this:
+<ul>
+<li>The cost of providing PSH units has only gone up over time. What approaches or policies might decrease this cost?</li>
+  <li>Increasing the growth rate of housing supply is obviously attractive, but remember the budget is *annual*, so it needs to be paid every year. In an environment where tax revenue is declining where would the additional money come from?</li>
+  <li>Reducing inflow obviously helps the system avoid overflowing. What policies might help people avoid becoming homeless in the first place?</li>
+<li>Decreasing length of stay allows the system to absorb more inflow, but only if people who leave the system aren't simply returning to the street. Some people cannot return to the workforce due to age, illness, or disability. So what policies might sustainably decrease the length of stay over the long run?</li>
+</ul><br></br>
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
       Feedback? I'd love to hear from you! <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 
