@@ -135,7 +135,7 @@ Before using this simulation model, please watch the YouTube video of this repor
 <br></br><br></br>
             <h2>Permanent Supportive Housing Simulation</h2>
       When you are done watching the video, you can play with the permanent supportive housing simulation below. This model simulates the impact of changing permanent supportive housing inventory supply, the number of people flowing into housing, and the average length of stay of people in housing.<br></br>
-      The Homeless and Supportive Housing Department's target vacancy rate is 7%, so when occupancy rate numbers (for both Year 1, and Year 10)are between 92% and 94% they will turn green. Another way to think about this is you want the red line to stay near the top of the graph as you make adjustments. That's the "goal" you are shooting for.<br><br> A few qestions you might want to ask yourself as you play with this:
+      The Homeless and Supportive Housing Department's target vacancy rate is 7%, so when occupancy rate numbers (for both Year 1, and Year 10)are between 92% and 94% they will turn green. Another way to think about this is you want the red line to stay near the top of the graph as you make adjustments. That's the "goal" you are shooting for.<br></br> A few qestions you might want to ask yourself as you play with this:
 <ul>
 <li>The cost of providing PSH units has only gone up over time. What approaches or policies might decrease this cost?</li>
   <li>Increasing the growth rate of housing supply is obviously attractive, but remember the budget is *annual*, so it needs to be paid every year. In an environment where tax revenue is declining where would the additional money come from?</li>
