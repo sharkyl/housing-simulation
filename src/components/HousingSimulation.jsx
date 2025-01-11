@@ -129,12 +129,10 @@ const calculateAvailability = () => {
     <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       
       <h1 className="text-2xl font-bold mb-6">SF Homeless Oversight Commission</h1>
-<h2>Data Officer Report</h2>
-
 <div class="video-container">
 <iframe class="video" src="https://www.youtube.com/embed/yachetMaSwE?si=tbtIUSTAjGVI5CIl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-<br></br><br></br>
+
             <h2>Permanent Supportive Housing Simulation Model</h2>
       When you are done watching the video, play with this permanent supportive housing model! This model simulates the impact of changing permanent supportive housing inventory supply, the number of people flowing into housing, and the average length of stay of people in housing.<br></br>
       The Homeless and Supportive Housing Department's target vacancy rate is 7%, so when occupancy rate numbers (for both Year 1, and Year 10)are between 92% and 94% they will turn green. Another way to think about this is you want the red line to stay near the top of the graph as you make adjustments. That's the "goal" you are shooting for.<br></br> A few qestions you might want to ask yourself as you play with this:
@@ -144,11 +142,11 @@ const calculateAvailability = () => {
   <li>Reducing inflow obviously helps the system avoid overflowing. <b>What policies might help people avoid becoming homeless in the first place?</b></li>
 <li>Decreasing length of stay allows the system to absorb more inflow, but only if people who leave the system aren't simply returning to the street. Some people cannot return to the workforce due to age, illness, or disability. <b>So what policies might sustainably decrease the length of stay over the long run?</b></li>
 </ul><br></br>
-      Hitting refresh on your browser will restore all values to default.<br></br><br></br>
       Feedback? I'd love to hear from you! <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
 <hr></hr>
 
       <h3>Housing Simulation</h3>
+Hitting refresh on your browser will restore all values to default.<br></br>
       <table className="w-full mb-8">
         <tbody>
           <tr className="h-16">
