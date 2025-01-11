@@ -131,7 +131,7 @@ const calculateAvailability = () => {
       <h1 className="text-2xl font-bold mb-6">San Francisco Homeless Oversight Commission Data Officer Report</h1>
 Before using the simulation model, please watch the YouTube video of this report here: <br></br>
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/yachetMaSwE?si=tbtIUSTAjGVI5CIl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="video" src="https://www.youtube.com/embed/yachetMaSwE?si=tbtIUSTAjGVI5CIl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <br></br><br></br>
             <h2>Permanent Supportive Housing Simulation</h2>
