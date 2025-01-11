@@ -138,13 +138,14 @@ Before using the simulation model, please watch the YouTube video of this report
       When you are done watching the video, you can play with the permanent supportive housing simulation below. This model simulates the impact of changing permanent supportive housing inventory supply, the number of people flowing into housing, and the average length of stay of people in housing.<br></br>
       The Homeless and Supportive Housing Department's target vacancy rate is 7%, so when occupancy rate numbers (for both Year 1, and Year 10)are between 92% and 94% they will turn green. Another way to think about this is you want the red line to stay near the top of the graph as you make adjustments. That's the "goal" you are shooting for.<br></br> A few qestions you might want to ask yourself as you play with this:
 <ul>
-<li>The cost of providing PSH units has only gone up over time. What approaches or policies might decrease this cost?</li>
-  <li>Increasing the growth rate of housing supply is obviously attractive, but remember the budget is *annual*, so it needs to be paid every year. In an environment where tax revenue is declining where would the additional money come from?</li>
-  <li>Reducing inflow obviously helps the system avoid overflowing. What policies might help people avoid becoming homeless in the first place?</li>
-<li>Decreasing length of stay allows the system to absorb more inflow, but only if people who leave the system aren't simply returning to the street. Some people cannot return to the workforce due to age, illness, or disability. So what policies might sustainably decrease the length of stay over the long run?</li>
+<li>The cost of providing PSH units has only gone up over time. <b>What approaches or policies might decrease this cost?</b></li>
+  <li>Increasing the growth rate of housing supply is obviously attractive, but remember the budget is *annual*, so it needs to be paid every year. <b>In an environment where tax revenue is declining where would the additional money come from?</b></li>
+  <li>Reducing inflow obviously helps the system avoid overflowing. <b>What policies might help people avoid becoming homeless in the first place?</b></li>
+<li>Decreasing length of stay allows the system to absorb more inflow, but only if people who leave the system aren't simply returning to the street. Some people cannot return to the workforce due to age, illness, or disability. <b>So what policies might sustainably decrease the length of stay over the long run?</b></li>
 </ul><br></br>
       Hitting refresh on your browser will restore all values to default.<br></br><br></br>
       Feedback? I'd love to hear from you! <a href='mailto:sharky@bandago.com'>sharky@bandago.com</a><br></br>
+<hr></hr>
 
       <h3>Housing Simulation</h3>
       <table className="w-full mb-8">
