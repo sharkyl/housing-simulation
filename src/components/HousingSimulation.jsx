@@ -126,10 +126,7 @@ const calculateAvailability = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg" style="max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;">
+    <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-lg" style="max-width: fit-content;margin-left: auto;margin-right: auto;width: 90%;">
       
       <h1 className="text-2xl font-bold mb-6">SF Homeless Oversight Commission - Data Officer Report, December 2024</h1>
 Before using this simulation model, please watch the YouTube video of this report here: <br></br>
