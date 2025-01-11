@@ -6,9 +6,5 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --max-width: fit-content;
-    --margin-left: auto;
-    --margin-right: auto;
-    --width: 90%;
   }
 }
