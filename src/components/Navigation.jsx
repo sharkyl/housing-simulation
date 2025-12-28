@@ -10,7 +10,7 @@ const Navigation = ({ currentRoute, onNavigate }) => {
   return (
     <header className="app-nav">
       <div className="app-nav-inner">
-        <div className="nav-brand">Housing-sim.com</div>
+        <div className="nav-brand">Homeless Policy Concepts</div>
         <nav className="nav-links">
           {navItems.map((item) => {
             const isActive = currentRoute === item.path
