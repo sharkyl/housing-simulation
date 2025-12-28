@@ -182,7 +182,7 @@ const TradeoffsModel = () => {
       const plot1 = { x0: 46, y0: 16, w: W1 - 66, h: H1 - 54 }
 
       clear(lafferCtx, W1, H1)
-      drawAxes(lafferCtx, plot1, 'Tax rate → (0% to 100%)', 'Tax revenue ↑')
+      drawAxes(lafferCtx, plot1, 'Tax rate → (0% to 100%)', 'Tax revenue ↑ (0 to 25 units)')
 
       const steps = 220
       const Rs = new Array(steps + 1)
@@ -224,7 +224,7 @@ const TradeoffsModel = () => {
       const plot2 = { x0: 46, y0: 16, w: W2 - 66, h: H2 - 54 }
 
       clear(allocCtx, W2, H2)
-      drawAxes(allocCtx, plot2, 'Number of people helped → (0% to 100%)', 'Average help/person ↑')
+      drawAxes(allocCtx, plot2, 'Number of people helped → (0% to 100%)', 'Average help/person ↑ (tax units)')
 
       const steps2 = 240
       let maxH = 0
