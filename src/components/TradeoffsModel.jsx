@@ -224,7 +224,7 @@ const TradeoffsModel = () => {
       const plot2 = { x0: 46, y0: 16, w: W2 - 66, h: H2 - 54 }
 
       clear(allocCtx, W2, H2)
-      drawAxes(allocCtx, plot2, '# of people helped → (0% to 100%)', 'Average help/person ↑')
+      drawAxes(allocCtx, plot2, 'Number of people helped → (0% to 100%)', 'Average help/person ↑')
 
       const steps2 = 240
       let maxH = 0
@@ -321,12 +321,12 @@ const TradeoffsModel = () => {
 
       <div className="tradeoffs-row">
         <div className="tradeoffs-card">
-          <div className="tradeoffs-label">Laffer curve: Tax rate (x) vs tax revenue (y)</div>
+          <div className="tradeoffs-label">Laffer curve: Tax rate (x) vs Tax revenue (y)</div>
           <canvas id="laffer" ref={lafferCanvasRef}></canvas>
         </div>
 
         <div className="tradeoffs-card">
-          <div className="tradeoffs-label">Allocation: # of people helped (x) vs average help per person (y)</div>
+          <div className="tradeoffs-label">Allocation: Number of people helped (x) vs Average help per person (y)</div>
           <canvas id="alloc" ref={allocCanvasRef}></canvas>
         </div>
       </div>
