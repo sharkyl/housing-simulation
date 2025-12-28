@@ -336,7 +336,7 @@ const TradeoffsModel = () => {
         </div>
 
         <div className="tradeoffs-card">
-          <div className="tradeoffs-label">Allocation frontier: Breadth (x) vs average help per person (y)</div>
+          <div className="tradeoffs-label">Allocation: Number of people helped (x) vs average help per person (y)</div>
           <canvas id="alloc" ref={allocCanvasRef}></canvas>
         </div>
       </div>
