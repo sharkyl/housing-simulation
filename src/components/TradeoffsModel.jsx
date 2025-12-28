@@ -224,7 +224,7 @@ const TradeoffsModel = () => {
       const plot2 = { x0: 46, y0: 16, w: W2 - 66, h: H2 - 54 }
 
       clear(allocCtx, W2, H2)
-      drawAxes(allocCtx, plot2, 'Number of people helped', 'Average help/person ↑')
+      drawAxes(allocCtx, plot2, '# of people helped → (0% to 100%)', 'Average help/person ↑')
 
       const steps2 = 240
       let maxH = 0
@@ -284,7 +284,7 @@ const TradeoffsModel = () => {
           Adjust service breadth and tax rates to explore revenue, depth of help, and the optional impact score. Use this as a conversation aid, not a forecast.
         </p>
         <p className="tradeoffs-note">
-        This is a conceptual toy model. It shows tradeoffs under scarcity: Tax rate → revenue (via a hump-shaped Laffer curve), and Breadth → help-per-person (more people served means less help per person, under a fixed budget). The “impact score” is an optional nonlinear utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a single number without claiming an “objective” optimum.
+        This is a conceptual toy model. It shows tradeoffs under scarcity: Tax rate → revenue (via a hump-shaped Laffer curve), and number of people helped → help-per-person (more people served means less help per person, under a fixed budget). The “impact score” is an optional nonlinear utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a single number without claiming an “objective” optimum.
         </p>
       </div>
 
@@ -336,7 +336,7 @@ const TradeoffsModel = () => {
         </div>
 
         <div className="tradeoffs-card">
-          <div className="tradeoffs-label">Allocation: Number of people helped (x) vs average help per person (y)</div>
+          <div className="tradeoffs-label">Allocation: # of people helped (x) vs average help per person (y)</div>
           <canvas id="alloc" ref={allocCanvasRef}></canvas>
         </div>
       </div>
