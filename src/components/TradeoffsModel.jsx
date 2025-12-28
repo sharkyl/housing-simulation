@@ -251,16 +251,6 @@ const TradeoffsModel = () => {
       drawVGuide(allocCtx, xB, plot2)
       drawDot(allocCtx, xB, yB, 5, '#e9eef7')
       drawText(allocCtx, xB + 8, yB - 8, `(${breadth}%, ${h.toFixed(3)})`, '#e9eef7', 'left')
-
-      drawText(allocCtx, plot2.x0, plot2.y0 + plot2.h + 38, 'Concentrated: fewer people, deeper help', '#aab3c2', 'left')
-      drawText(
-        allocCtx,
-        plot2.x0 + plot2.w,
-        plot2.y0 + plot2.h + 38,
-        'Broad: more people, shallower help',
-        '#aab3c2',
-        'right',
-      )
     }
 
     breadthEl.addEventListener('input', render)
@@ -292,7 +282,7 @@ const TradeoffsModel = () => {
         <div className="controls-grid">
           <div className="control-row">
             <label>
-              <span>Service distribution (breadth)</span>
+              <span>Resource Allocation</span>
               <span className="value" ref={breadthLabelRef}></span>
             </label>
             <input id="breadth" ref={breadthInputRef} type="range" min="0" max="100" defaultValue="55" />
