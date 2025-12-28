@@ -99,7 +99,6 @@ a:hover {
 .page-subtitle {
   margin: 10px 0 0;
   color: var(--muted);
-  max-width: 860px;
 }
 
 .video-container {
