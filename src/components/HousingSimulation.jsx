@@ -73,7 +73,7 @@ const buildOccupancyData = ({ annualGrowthRate, stayLength, monthlyInflow }) => 
 const getOccupancyStyles = (rate) => {
   const numRate = Number(rate)
   if (numRate >= 92 && numRate <= 94) {
-    return { color: '#16a34a', fontWeight: 700, transition: 'all 0.3s' }
+    return { color: '#6ee7b7', fontWeight: 700, transition: 'all 0.3s' }
   }
   return { transition: 'all 0.3s' }
 }
@@ -105,47 +105,41 @@ const HousingSimulation = () => {
   const year10Budget = year10Units * housingCost
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8 p-6">
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-wide text-blue-700">Interactive model</p>
-        <h1 className="mt-2 text-2xl font-bold text-gray-900">Permanent Supportive Housing Simulation</h1>
-        <p className="mt-3 text-gray-700">
+    <div className="page-shell">
+      <section className="panel">
+        <div className="kicker">Interactive model</div>
+        <h1 className="page-title">Permanent Supportive Housing Simulation</h1>
+        <p className="page-subtitle">
           Explore how changing permanent supportive housing inventory, inflow, and average length of stay affect occupancy
           and budget needs over a decade. Target vacancy is 7%, so occupancy rates between 92% and 94% show in green.
         </p>
-        <p className="mt-3 text-sm text-gray-600">Prompts to consider as you adjust the sliders:</p>
-        <ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-gray-700">
+        <p className="helper">Prompts to consider as you adjust the sliders:</p>
+        <ul className="helper-list">
           <li>
-            The cost of providing PSH units has risen over time. <strong>What approaches or policies might decrease this
-            cost?</strong>
+            The cost of providing PSH units has risen over time. <strong>What approaches or policies might decrease this cost?</strong>
           </li>
           <li>
             Increasing the growth rate of housing supply is attractive, but the budget is annual. <strong>Where would
             additional money come from if revenue declines?</strong>
           </li>
           <li>
-            Reducing inflow helps prevent overflow. <strong>What policies might keep people from becoming homeless in the
-            first place?</strong>
+            Reducing inflow helps prevent overflow. <strong>What policies might keep people from becoming homeless in the first place?</strong>
           </li>
           <li>
-            Shorter stays expand capacity only if exits are stable. <strong>What durable supports could reduce length of
-            stay without pushing people back to the street?</strong>
+            Shorter stays expand capacity only if exits are stable. <strong>What durable supports could reduce length of stay without pushing people back to the street?</strong>
           </li>
         </ul>
-        <p className="mt-4 text-sm text-gray-600">
-          Feedback? <a className="font-semibold text-blue-700" href="mailto:sharky@bandago.com">sharky@bandago.com</a>
-        </p>
-      </div>
+      </section>
 
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-gray-900">Housing simulation controls</h3>
-          <p className="text-xs text-gray-500">Refresh your browser to reset to defaults</p>
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Housing simulation controls</h2>
+          <span className="helper">Refresh your browser to reset to defaults</span>
         </div>
-        <table className="mb-8 w-full">
+        <table className="table-like">
           <tbody>
-            <tr className="h-16">
-              <td className="w-48 text-sm font-medium">Housing Cost per Unit</td>
+            <tr>
+              <td className="w-48 text-sm font-medium">Housing cost per unit</td>
               <td className="w-96 px-4">
                 <input
                   type="range"
@@ -160,8 +154,8 @@ const HousingSimulation = () => {
               <td className="text-sm">${housingCost.toLocaleString()}</td>
             </tr>
 
-            <tr className="h-16">
-              <td className="text-sm font-medium">Annual Housing Growth Rate</td>
+            <tr>
+              <td className="text-sm font-medium">Annual housing growth rate</td>
               <td className="px-4">
                 <input
                   type="range"
@@ -174,13 +168,12 @@ const HousingSimulation = () => {
                 />
               </td>
               <td className="text-sm">
-                {annualGrowthRate}% = {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'}
-                {' '}in Year 1
+                {annualGrowthRate}% = {Math.abs(yearOneChange).toLocaleString()} units {yearOneChange >= 0 ? 'added' : 'removed'} in Year 1
               </td>
             </tr>
 
-            <tr className="h-16">
-              <td className="text-sm font-medium">Monthly Inflow</td>
+            <tr>
+              <td className="text-sm font-medium">Monthly inflow</td>
               <td className="px-4">
                 <input
                   type="range"
@@ -192,11 +185,11 @@ const HousingSimulation = () => {
                   className="w-full"
                 />
               </td>
-              <td className="text-sm">{monthlyInflow} Occupied units/month ({monthlyInflow * 12} annually)</td>
+              <td className="text-sm">{monthlyInflow} occupied units/month ({monthlyInflow * 12} annually)</td>
             </tr>
 
-            <tr className="h-16">
-              <td className="text-sm font-medium">Average Length of Stay</td>
+            <tr>
+              <td className="text-sm font-medium">Average length of stay</td>
               <td className="px-4">
                 <input
                   type="range"
@@ -209,8 +202,7 @@ const HousingSimulation = () => {
                 />
               </td>
               <td className="text-sm">
-                {stayLength} years = {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly churn (
-                {Math.round((1 / stayLength) * 1000) / 10}% annual)
+                {stayLength} years = {Math.round((1 / (stayLength * 12)) * 1000) / 10}% monthly churn ({Math.round((1 / stayLength) * 1000) / 10}% annual)
               </td>
             </tr>
 
@@ -220,21 +212,21 @@ const HousingSimulation = () => {
               </td>
             </tr>
 
-            <tr className="h-16">
+            <tr>
               <td colSpan="2" className="text-sm">
-                Month 1 Occupancy rate: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span>
+                Month 1 occupancy rate: <span style={getOccupancyStyles(month1Occupancy)}>{month1Occupancy}%</span>
               </td>
               <td className="text-sm">
-                Year 10 Occupancy rate: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
+                Year 10 occupancy rate: <span style={getOccupancyStyles(endingOccupancy)}>{endingOccupancy}%</span>
               </td>
             </tr>
 
-            <tr className="h-16">
-              <td colSpan="2" className="text-sm">Year 1 Budget: ${year1Budget.toLocaleString()}</td>
-              <td className="text-sm">Year 10 Budget: ${year10Budget.toLocaleString()}</td>
+            <tr>
+              <td colSpan="2" className="text-sm">Year 1 budget: ${year1Budget.toLocaleString()}</td>
+              <td className="text-sm">Year 10 budget: ${year10Budget.toLocaleString()}</td>
             </tr>
 
-            <tr className="h-16">
+            <tr>
               <td colSpan="3" className="text-sm">
                 <strong>Cumulative available units over 10 years: {availability.cumulativeAvailable.toLocaleString()} units</strong>
               </td>
@@ -242,36 +234,37 @@ const HousingSimulation = () => {
           </tbody>
         </table>
 
-        <div className="h-96">
-          <ResponsiveContainer width="100%" height={350}>
+        <div className="chart-area">
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart data={occupancyData} margin={{ top: 25, right: 30, left: 20, bottom: 25 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="year" label={{ value: 'Years', position: 'bottom', dy: 5 }} />
-              <YAxis yAxisId="left" label={{ value: 'Units', angle: -90, position: 'insideLeft' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#1f2431" />
+              <XAxis dataKey="year" tick={{ fill: '#cbd5e1' }} label={{ value: 'Years', position: 'bottom', dy: 5, fill: '#aab3c2' }} />
+              <YAxis yAxisId="left" tick={{ fill: '#cbd5e1' }} label={{ value: 'Units', angle: -90, position: 'insideLeft', fill: '#aab3c2' }} />
               <YAxis
                 yAxisId="right"
                 orientation="right"
                 domain={[0, 100]}
-                label={{ value: 'Occupancy %', angle: 90, position: 'insideRight' }}
+                tick={{ fill: '#cbd5e1' }}
+                label={{ value: 'Occupancy %', angle: 90, position: 'insideRight', fill: '#aab3c2' }}
               />
               <Tooltip
+                contentStyle={{ background: '#0f1118', border: '1px solid var(--border)', color: '#e9eef7' }}
                 labelFormatter={(label) => `Year ${label}`}
                 formatter={(value, name) => {
                   if (name === 'occupancyRate') return `${value}%`
                   return value.toLocaleString()
                 }}
               />
-              <Legend verticalAlign="top" height={36} />
-              <Line type="monotone" dataKey="units" stroke="#2563eb" name="Total Units" yAxisId="left" />
-              <Line type="monotone" dataKey="occupied" stroke="#16a34a" name="Occupied Units" yAxisId="left" />
-              <Line type="monotone" dataKey="occupancyRate" stroke="#dc2626" name="Occupancy Rate" yAxisId="right" />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ color: '#aab3c2' }} />
+              <Line type="monotone" dataKey="units" stroke="#3b82f6" name="Total units" yAxisId="left" strokeWidth={2} />
+              <Line type="monotone" dataKey="occupied" stroke="#6ee7b7" name="Occupied units" yAxisId="left" strokeWidth={2} />
+              <Line type="monotone" dataKey="occupancyRate" stroke="#f97316" name="Occupancy rate" yAxisId="right" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
 
 export default HousingSimulation
-
