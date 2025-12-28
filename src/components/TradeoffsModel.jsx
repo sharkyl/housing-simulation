@@ -283,6 +283,9 @@ const TradeoffsModel = () => {
         <p className="page-subtitle">
           Adjust service breadth and tax rates to explore revenue, depth of help, and the optional impact score. Use this as a conversation aid, not a forecast.
         </p>
+        <p className="page-subtitle">
+        This is a conceptual toy model. It shows tradeoffs under scarcity: Tax rate → revenue (via a hump-shaped Laffer curve), and Breadth → help-per-person (more people served means less help per person, under a fixed budget). The “impact score” is an optional nonlinear utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a single number without claiming an “objective” optimum.
+        </p>
       </div>
 
       <div className="tradeoffs-card">
@@ -323,10 +326,6 @@ const TradeoffsModel = () => {
               <div className="v" ref={impactOutRef}></div>
             </div>
           </div>
-
-          <p className="tradeoffs-note">
-            This is a conceptual toy model. It shows tradeoffs under scarcity: <strong>Tax rate → revenue</strong> (via a hump-shaped Laffer curve), and <strong>Breadth → help-per-person</strong> (more people served means less help per person, under a fixed budget). The “impact score” is an optional nonlinear utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a single number without claiming an “objective” optimum.
-          </p>
         </div>
       </div>
 
