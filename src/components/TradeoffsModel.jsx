@@ -155,6 +155,9 @@ const TradeoffsModel = () => {
       const breadth01 = breadth / 100
       const tax01 = tax / 100
 
+      fitCanvas(lafferCanvas, lafferCtx, 360)
+      fitCanvas(allocCanvas, allocCtx, 360)
+
       breadthLabel.textContent =
         breadth <= 10
           ? 'Concentrated (few people)'
@@ -175,7 +178,7 @@ const TradeoffsModel = () => {
       impactOut.textContent = `${impact.toFixed(1)} impact units`
 
       const W1 = lafferCanvas.clientWidth || lafferCanvas.parentElement.clientWidth
-      const H1 = 330
+      const H1 = lafferCanvas.clientHeight || 360
       const plot1 = { x0: 46, y0: 16, w: W1 - 66, h: H1 - 54 }
 
       clear(lafferCtx, W1, H1)
@@ -217,16 +220,11 @@ const TradeoffsModel = () => {
       drawText(lafferCtx, xPeak, plot1.y0 + 12, 'Peak revenue', '#aab3c2', 'center')
 
       const W2 = allocCanvas.clientWidth || allocCanvas.parentElement.clientWidth
-      const H2 = 330
+      const H2 = allocCanvas.clientHeight || 360
       const plot2 = { x0: 46, y0: 16, w: W2 - 66, h: H2 - 54 }
 
       clear(allocCtx, W2, H2)
-      drawAxes(
-        allocCtx,
-        plot2,
-        'Service distribution breadth → (few → many)',
-        'Average help/person ↑'
-      )
+      drawAxes(allocCtx, plot2, 'Service distribution breadth → (few → many)', 'Average help/person ↑')
 
       const steps2 = 240
       let maxH = 0
@@ -254,58 +252,42 @@ const TradeoffsModel = () => {
       drawDot(allocCtx, xB, yB, 5, '#e9eef7')
       drawText(allocCtx, xB + 8, yB - 8, `(${breadth}%, ${h.toFixed(3)})`, '#e9eef7', 'left')
 
-      drawText(
-        allocCtx,
-        plot2.x0,
-        plot2.y0 + plot2.h + 38,
-        'Concentrated: fewer people, deeper help',
-        '#aab3c2',
-        'left'
-      )
+      drawText(allocCtx, plot2.x0, plot2.y0 + plot2.h + 38, 'Concentrated: fewer people, deeper help', '#aab3c2', 'left')
       drawText(
         allocCtx,
         plot2.x0 + plot2.w,
         plot2.y0 + plot2.h + 38,
         'Broad: more people, shallower help',
         '#aab3c2',
-        'right'
+        'right',
       )
     }
 
-    const refitAll = () => {
-      fitCanvas(lafferCanvas, lafferCtx, 330)
-      fitCanvas(allocCanvas, allocCtx, 330)
-      render()
-    }
-
-    const handleResize = () => refitAll()
-
     breadthEl.addEventListener('input', render)
     taxEl.addEventListener('input', render)
-    window.addEventListener('resize', handleResize)
-    refitAll()
+    window.addEventListener('resize', render)
+    render()
 
     return () => {
       breadthEl.removeEventListener('input', render)
       taxEl.removeEventListener('input', render)
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', render)
     }
   }, [])
 
   return (
-    <div className="tradeoffs-wrap">
+    <div className="tradeoffs-wrap page-shell">
       <div className="tradeoffs-header">
-        <p className="tradeoffs-kicker">Concept model</p>
-        <h1>Public Health Allocation Tradeoffs</h1>
-        <p className="tradeoffs-subtitle">
-          Adjust service breadth and tax rates to explore revenue, depth of help, and the optional impact
-          score. Use this as a conversation aid, not a forecast.
+        <div className="kicker">Concept model</div>
+        <h1 className="page-title">Public Health Allocation Tradeoffs</h1>
+        <p className="page-subtitle">
+          Adjust service breadth and tax rates to explore revenue, depth of help, and the optional impact score. Use this as a conversation aid, not a forecast.
         </p>
       </div>
 
       <div className="tradeoffs-card">
-        <div className="tradeoffs-controls">
-          <div className="tradeoffs-control">
+        <div className="controls-grid">
+          <div className="control-row">
             <label>
               <span>Service distribution (breadth)</span>
               <span className="value" ref={breadthLabelRef}></span>
@@ -313,7 +295,7 @@ const TradeoffsModel = () => {
             <input id="breadth" ref={breadthInputRef} type="range" min="0" max="100" defaultValue="55" />
           </div>
 
-          <div className="tradeoffs-control">
+          <div className="control-row">
             <label>
               <span>Tax rate</span>
               <span className="value" ref={taxLabelRef}></span>
@@ -324,30 +306,26 @@ const TradeoffsModel = () => {
           <div className="divider"></div>
 
           <div className="tradeoffs-stats">
-            <div className="pill">
+            <div className="stat-pill">
               <div className="k">Estimated tax revenue (Laffer)</div>
               <div className="v" ref={revOutRef}></div>
             </div>
-            <div className="pill">
+            <div className="stat-pill">
               <div className="k">Estimated people served (relative units)</div>
               <div className="v" ref={peopleOutRef}></div>
             </div>
-            <div className="pill">
+            <div className="stat-pill">
               <div className="k">Average help per person</div>
               <div className="v" ref={helpOutRef}></div>
             </div>
-            <div className="pill">
+            <div className="stat-pill">
               <div className="k">Total “impact” score (optional utility)</div>
               <div className="v" ref={impactOutRef}></div>
             </div>
           </div>
 
-          <p className="note">
-            This is a conceptual toy model. It shows tradeoffs under scarcity: <strong>Tax rate → revenue</strong>
-            (via a hump-shaped Laffer curve), and <strong>Breadth → help-per-person</strong> (more people served
-            means less help per person, under a fixed budget). The “impact score” is an optional nonlinear
-            utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a
-            single number without claiming an “objective” optimum.
+          <p className="tradeoffs-note">
+            This is a conceptual toy model. It shows tradeoffs under scarcity: <strong>Tax rate → revenue</strong> (via a hump-shaped Laffer curve), and <strong>Breadth → help-per-person</strong> (more people served means less help per person, under a fixed budget). The “impact score” is an optional nonlinear utility measure (diminishing returns on help depth) so you can summarize breadth + depth into a single number without claiming an “objective” optimum.
           </p>
         </div>
       </div>
@@ -359,9 +337,7 @@ const TradeoffsModel = () => {
         </div>
 
         <div className="tradeoffs-card">
-          <div className="tradeoffs-label">
-            Allocation frontier: Breadth (x) vs average help per person (y)
-          </div>
+          <div className="tradeoffs-label">Allocation frontier: Breadth (x) vs average help per person (y)</div>
           <canvas id="alloc" ref={allocCanvasRef}></canvas>
         </div>
       </div>
