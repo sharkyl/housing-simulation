@@ -224,7 +224,7 @@ const TradeoffsModel = () => {
       const plot2 = { x0: 46, y0: 16, w: W2 - 66, h: H2 - 54 }
 
       clear(allocCtx, W2, H2)
-      drawAxes(allocCtx, plot2, 'Service distribution breadth → (few → many)', 'Average help/person ↑')
+      drawAxes(allocCtx, plot2, 'Number of people helped', 'Average help/person ↑')
 
       const steps2 = 240
       let maxH = 0
